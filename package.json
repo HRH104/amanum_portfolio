@@ -1,0 +1,10 @@
+{
+  "name": "amanum_portfolio",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo 'Static build complete'"
+  },
+  "devDependencies": {
+    "netlify-plugin-markdown": "^1.0.3"
+  }
+}

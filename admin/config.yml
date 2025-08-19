@@ -1,8 +1,8 @@
- backend:
+backend:
   name: git-gateway
-  branch: main  # or master depending on your repo
+  branch: main  # or master if that's your repo branch
 
-media_folder: "images/uploads"   # where uploaded images go
+media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
@@ -11,6 +11,8 @@ collections:
     folder: "content/publications"
     create: true
     slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Journal / Conference", name: "journal", widget: "string" }
@@ -23,6 +25,8 @@ collections:
     folder: "content/essays"
     create: true
     slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Summary", name: "summary", widget: "text" }
