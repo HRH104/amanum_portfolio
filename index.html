@@ -32,7 +32,7 @@
   <nav class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-4">
-        <div class="font-serif text-xl font-semibold text-charcoal">Your Name</div>
+        <div class="font-serif text-xl font-semibold text-charcoal">Amanum Habila</div>
         <div class="hidden md:flex space-x-8">
           <a href="#home" class="nav-link text-charcoal hover:text-sage transition-colors">Home</a>
           <a href="#publications" class="nav-link text-charcoal hover:text-sage transition-colors">Publications</a>
@@ -64,8 +64,9 @@
         <div>
           <h1 class="font-serif text-4xl lg:text-5xl font-semibold text-charcoal mb-6">Amanum Habila</h1>
           <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-            Graduate applicant in Art History with research interests in Renaissance painting, iconography, and political power structures in 15th-century Florence.
-          </p>
+            My name is Habila, Amanum Jeremiah, and I am an artist from Nigeria. I’ve been attracted by artworks since I was a child, and I began drawing them myself. I grew up around artists because my older brother studied fine arts, and I would often visit him when he was doing art with his students. As I grew older, I began to envision myself as a full-time studio artist and attended Nsukka Art School in Nigeria to learn and become a visual artist. When I graduated in 2022, I came across Russian painters and instantly saw how different and technically proficient these art students from Russian art institutions were. <br> </p>
+
+            <p> I listened to many lectures and interviews with Russian art teachers, particularly Alexander Ryzhkin, who discussed the ideologies of various art schools, including the Imperial Academy of Arts, and I was captivated. I started exploring for art lessons that would help me improve my figure drawings, composition, and rendering skills before discovering the Drawing Academy course. I read through the course overview and all of the lessons, and it is truly a library of knowledge that I have been missing my entire life. </p>
           <h3 class="font-serif text-lg font-semibold text-charcoal mb-2">Research Interests</h3>
           <ul class="text-gray-600 space-y-1">
             <li>• Renaissance Italian Art & Architecture</li>
@@ -171,15 +172,12 @@
   </footer>
 
   <!-- 📖 ESSAY MODAL -->
-  <div id="essay-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-lg max-w-4xl max-h-[90vh] overflow-y-auto">
-      <div class="p-6">
-        <div class="flex justify-between items-center mb-4">
-          <h3 id="essay-title" class="font-serif text-2xl font-semibold text-charcoal"></h3>
-          <button onclick="closeEssay()" class="text-gray-500 hover:text-gray-700">X</button>
-        </div>
-        <div id="essay-content" class="prose prose-lg max-w-none"></div>
-      </div>
+  <div id="essay-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg max-w-3xl w-full p-8 relative">
+      <button onclick="document.getElementById('essay-modal').classList.add('hidden'); document.body.style.overflow='auto';" 
+              class="absolute top-4 right-4 text-gray-600 hover:text-red-500">✖</button>
+      <h2 id="essay-title" class="text-2xl font-serif font-bold mb-4"></h2>
+      <div id="essay-content" class="prose max-w-none text-gray-700"></div>
     </div>
   </div>
 
@@ -232,57 +230,67 @@
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-    // Fetch Publications
-    fetch('/content/publications/index.json')
-        .then(res => res.json())
-        .then(publications => {
+
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // Fetch Publications JSON
+    fetch('/content-json/publications.json')
+      .then(res => res.json())
+      .then(publications => {
         const container = document.getElementById('publications-list');
         publications.forEach(pub => {
-            container.innerHTML += `
+          container.innerHTML += `
             <div class="bg-warm-gray p-6 rounded-lg">
-                <h3 class="font-serif text-xl font-semibold text-charcoal mb-2">${pub.title}</h3>
-                <p class="text-sage font-medium mb-2">${pub.journal}, ${pub.year}</p>
-                <p class="text-gray-600 mb-4">${pub.abstract}</p>
-                <a href="${pub.pdf}" target="_blank" class="inline-flex items-center px-4 py-2 bg-sage text-white rounded-md hover:bg-opacity-90 transition-colors">Download PDF</a>
+              <h3 class="font-serif text-xl font-semibold text-charcoal mb-2">${pub.title}</h3>
+              <p class="text-sage font-medium mb-2">${pub.journal}, ${pub.year}</p>
+              <p class="text-gray-600 mb-4">${pub.abstract}</p>
+              <a href="${pub.pdf}" target="_blank" 
+                class="inline-flex items-center px-4 py-2 bg-sage text-white rounded-md hover:bg-opacity-90 transition-colors">
+                Download PDF
+              </a>
             </div>
-            `;
+          `;
         });
-        });
+      });
 
-    // Fetch Essays
-    fetch('/content/essays/index.json')
-        .then(res => res.json())
-        .then(essays => {
+    // Fetch Essays JSON
+    fetch('/content-json/essays.json')
+      .then(res => res.json())
+      .then(essays => {
         const container = document.getElementById('essays-list');
         essays.forEach(essay => {
-            container.innerHTML += `
+          container.innerHTML += `
             <article class="bg-white p-6 rounded-lg shadow-sm">
-                <h3 class="font-serif text-xl font-semibold text-charcoal mb-3">${essay.title}</h3>
-                <p class="text-gray-600 mb-4">${essay.summary}</p>
-                <button onclick="openEssay('${essay.slug}')" class="text-sage hover:text-terracotta font-medium transition-colors">Read more →</button>
+              <h3 class="font-serif text-xl font-semibold text-charcoal mb-3">${essay.title}</h3>
+              <p class="text-gray-600 mb-4">${essay.summary}</p>
+              <button onclick="openEssay('${essay.slug}')" 
+                      class="text-sage hover:text-terracotta font-medium transition-colors">
+                Read more →
+              </button>
             </article>
-            `;
+          `;
         });
 
-        // Load full essay content into modal
+        // Store full essay body for modal
         window.essays = essays.reduce((map, essay) => {
-            map[essay.slug] = essay;
-            return map;
+          map[essay.slug] = essay;
+          return map;
         }, {});
-        });
+      });
 
-    // Open Essay Modal
+    // Function to open essay modal
     function openEssay(slug) {
-        const essay = window.essays[slug];
-        if (essay) {
+      const essay = window.essays[slug];
+      if (essay) {
         document.getElementById('essay-title').textContent = essay.title;
         document.getElementById('essay-content').innerHTML = marked.parse(essay.body);
         document.getElementById('essay-modal').classList.remove('hidden');
         document.body.style.overflow = 'hidden';
-        }
+      }
     }
-    </script>
+  </script>
+
 
 </body>
 </html>
