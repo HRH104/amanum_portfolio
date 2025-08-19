@@ -1,0 +1,29 @@
+ backend:
+  name: git-gateway
+  branch: main  # or master depending on your repo
+
+media_folder: "images/uploads"   # where uploaded images go
+public_folder: "/images/uploads"
+
+collections:
+  - name: "publications"
+    label: "Academic Publications"
+    folder: "content/publications"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Journal / Conference", name: "journal", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Abstract", name: "abstract", widget: "text" }
+      - { label: "PDF File", name: "pdf", widget: "file" }
+
+  - name: "essays"
+    label: "Essays & Writings"
+    folder: "content/essays"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
