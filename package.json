@@ -1,10 +1,11 @@
 {
-  "name": "amanum_portfolio",
+  "name": "amanum-portfolio",
   "version": "1.0.0",
   "scripts": {
-    "build": "echo 'Static build complete'"
+    "build": "node build-content.js"
   },
-  "devDependencies": {
-    "netlify-plugin-markdown": "^1.0.3"
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "fs-extra": "^11.1.1"
   }
 }
