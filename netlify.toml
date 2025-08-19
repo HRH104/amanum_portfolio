@@ -1,9 +1,3 @@
 [build]
   publish = "."
   command = "npm run build"
-
-[[plugins]]
-  package = "netlify-plugin-markdown"
-
-  [plugins.inputs]
-    output = "content-json"
