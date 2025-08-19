@@ -126,46 +126,81 @@
   </section>
 
   <!-- 📬 CONTACT -->
-  <section id="contact" class="py-16 bg-warm-gray">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-serif text-3xl font-semibold text-charcoal mb-12 text-center">Contact</h2>
-      <div class="grid md:grid-cols-2 gap-12">
+  <section id="contact" class="py-16 bg-cream">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="font-serif text-3xl font-bold text-charcoal mb-6">Contact Me</h2>
+          <div>
+            <h3 class="font-serif text-xl font-semibold text-charcoal mb-4">Get in Touch</h3>
+            <p class="text-gray-600">Email: <a href="" class="text-sage hover:text-terracotta"></a></p>
+            <p class="text-gray-600">Wukari Taraba state</p>
+          </div>
+
+      <!-- ✅ Netlify-enabled form -->
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" 
+            action="/thank-you.html" id="contact-form" class="space-y-6">
+        
+        <!-- Required hidden input -->
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">
+          <label>Don’t fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <!-- Name -->
         <div>
-          <h3 class="font-serif text-xl font-semibold text-charcoal mb-4">Get in Touch</h3>
-          <p class="text-gray-600">Email: <a href="" class="text-sage hover:text-terracotta"></a></p>
-          <p class="text-gray-600">Wukari Taraba state</p>
+          <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" name="name" id="name" required 
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+                        focus:border-sage focus:ring-sage sm:text-sm">
         </div>
+
+        <!-- Email -->
         <div>
-          <!-- ✅ Netlify-ready form -->
-          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
-            <input type="hidden" name="form-name" value="contact" />
-            <p class="hidden">
-              <label>Don’t fill this out: <input name="bot-field" /></label>
-            </p>
-
-            <div>
-              <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-              <input type="text" name="name" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sage focus:ring-sage sm:text-sm">
-            </div>
-
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-              <input type="email" name="email" id="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sage focus:ring-sage sm:text-sm">
-            </div>
-
-            <div>
-              <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-              <textarea name="message" id="message" rows="4" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-sage focus:ring-sage sm:text-sm"></textarea>
-            </div>
-
-            <button type="submit" class="px-4 py-2 bg-sage text-white rounded-md hover:bg-opacity-90 transition-colors">
-              Send
-            </button>
-        </form>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" name="email" id="email" required 
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+                        focus:border-sage focus:ring-sage sm:text-sm">
         </div>
+
+        <!-- Message -->
+        <div>
+          <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+          <textarea name="message" id="message" rows="4" required 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+                          focus:border-sage focus:ring-sage sm:text-sm"></textarea>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" 
+                class="px-4 py-2 bg-sage text-white rounded-md hover:bg-opacity-90 transition-colors">
+          Send
+        </button>
+      </form>
+
+      <!-- ✅ Inline success message (optional) -->
+      <div id="form-success" class="hidden text-green-600 font-semibold mt-4">
+        ✅ Message sent successfully!
       </div>
     </div>
   </section>
+
+<!-- ✅ JS for inline success handling -->
+  <script>
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        await fetch("/", {
+          method: "POST",
+          body: data,
+        });
+        form.reset();
+        document.getElementById('form-success').classList.remove('hidden');
+      } catch (err) {
+        alert("⚠️ Something went wrong. Please try again.");
+      }
+    });
+  </script>
 
   <!-- ⚫ FOOTER -->
   <footer class="bg-charcoal text-white py-8">
