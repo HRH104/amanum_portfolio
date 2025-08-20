@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <title>Site Admin</title>
-  <!-- Load Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- ✅ Load Decap CMS from CDN -->
+  <script src="https://unpkg.com/decap-cms@3.0.12/dist/decap-cms.js"></script>
 </head>
 <body>
-  <!-- This div is required for CMS to render -->
+  <!-- ✅ This container is where CMS will render -->
+  <div id="cms"></div>
+
   <script>
-    if (typeof CMS !== "undefined") {
-      CMS.init();
-    } else {
-      document.body.innerHTML = "<h1 style='color:red'>CMS failed to load</h1>";
-    }
+    window.addEventListener("load", () => {
+      if (typeof CMS !== "undefined") {
+        CMS.init();
+      } else {
+        document.getElementById("cms").innerHTML =
+          "<h1 style='color:red'>❌ CMS failed to load again</h1>";
+      }
+    });
   </script>
 </body>
 </html>
