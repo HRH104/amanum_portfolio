@@ -1,14 +1,13 @@
 backend:
   name: github
   repo: HRH104/amanum_portfolio   # your GitHub repo
-  branch: main                    # your repo branch
+  branch: main
 
-
-media_folder: "images/uploads"     # where images/files go inside repo
-public_folder: "/images/uploads"   # how they’re accessed on the site
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
-  # ✅ Curriculum Vitae (PDF upload)
+  # CV (single file, PDF upload)
   - name: "cv"
     label: "Curriculum Vitae"
     files:
@@ -18,7 +17,7 @@ collections:
         fields:
           - { label: "Upload CV (PDF)", name: "cv_file", widget: "file" }
 
-  # ✅ Academic Publications
+  # Academic Publications
   - name: "publications"
     label: "Academic Publications"
     folder: "content/publications"
@@ -28,12 +27,12 @@ collections:
     format: "frontmatter"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Journal / Conference", name: "journal", widget: "string" }
+      - { label: "Journal", name: "journal", widget: "string" }
       - { label: "Year", name: "year", widget: "string" }
       - { label: "Abstract", name: "abstract", widget: "text" }
-      - { label: "PDF File", name: "pdf", widget: "file" }
+      - { label: "PDF", name: "pdf", widget: "file" }
 
-  # ✅ Essays & Writings
+  # Essays
   - name: "essays"
     label: "Essays & Writings"
     folder: "content/essays"
