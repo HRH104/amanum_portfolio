@@ -1,18 +1,31 @@
 backend:
-  name: git-gateway
-  branch: main   # or master if that's your branch
+  name: github
+  repo: HRH104/amanum_portfolio   # your GitHub repo
+  branch: main                    # your repo branch
 
-media_folder: "images/uploads"   # where uploads are stored in repo
-public_folder: "/images/uploads"
+
+media_folder: "images/uploads"     # where images/files go inside repo
+public_folder: "/images/uploads"   # how they’re accessed on the site
 
 collections:
+  # ✅ Curriculum Vitae (PDF upload)
+  - name: "cv"
+    label: "Curriculum Vitae"
+    files:
+      - file: "content/cv.md"
+        label: "CV"
+        name: "cv"
+        fields:
+          - { label: "Upload CV (PDF)", name: "cv_file", widget: "file" }
+
+  # ✅ Academic Publications
   - name: "publications"
     label: "Academic Publications"
     folder: "content/publications"
     create: true
     slug: "{{slug}}"
-    format: "frontmatter"
     extension: "md"
+    format: "frontmatter"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Journal / Conference", name: "journal", widget: "string" }
@@ -20,13 +33,14 @@ collections:
       - { label: "Abstract", name: "abstract", widget: "text" }
       - { label: "PDF File", name: "pdf", widget: "file" }
 
+  # ✅ Essays & Writings
   - name: "essays"
     label: "Essays & Writings"
     folder: "content/essays"
     create: true
     slug: "{{slug}}"
-    format: "frontmatter"
     extension: "md"
+    format: "frontmatter"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Summary", name: "summary", widget: "text" }
